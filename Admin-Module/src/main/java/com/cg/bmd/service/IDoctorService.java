@@ -19,32 +19,21 @@ public interface IDoctorService {
 	
 	public Doctor updateDoctorProfile(Doctor bean);
 	
-	public AvailabilityDates addAvailability(AvailabilityDates bean);
-	
-	public AvailabilityDates updateAvailability(AvailabilityDates bean);
-
 	public Doctor getDoctor(int doctorId) throws DoctorNotFoundException;
 	
 	public void removeDoctor(int doctorId) throws DoctorNotFoundException;
 	
 	public List<Doctor> getDoctorList();
 
-	public List<PatientResponse> getDPJoin();
+	public Doctor getPatientsByDoctor(int doctorId);
 
-
-//	Doctor getPatientListByDoctor(String doctorName);
-
-	Doctor getPatientsByDoctor(int doctorId);
-
-	 public List<Doctor> getBySpeciality(String speciality);
+	public List<Doctor> getBySpeciality(String speciality);
+	 	 
+	public List<AppointmentResponse> getDAJoin(); // ->Appointment
 	 
-//	 public List<Patient> getPatientByDoctor(int doctorId);
-	 
-	 public List<AppointmentResponse> getDAJoin(); // ->Appointment
-//	 
-     public Doctor getByDoctorName(String doctorName); //->Appointment
+	public Doctor getAppointmentByDoctor(int doctorId);
 
-	 public Doctor getAppointmentByDoctor(int doctorId);
+    public Doctor getFeedbackByDoctor(int doctorId);
 
 
 }

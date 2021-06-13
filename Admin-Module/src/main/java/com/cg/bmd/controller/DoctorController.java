@@ -21,8 +21,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cg.bmd.dto.AppointmentResponse;
 import com.cg.bmd.dto.DoctorResponse;
 import com.cg.bmd.dto.PatientResponse;
+import com.cg.bmd.entities.AvailabilityDates;
 import com.cg.bmd.entities.Doctor;
 import com.cg.bmd.entities.Patient;
+import com.cg.bmd.service.IAvailabilityDatesService;
 import com.cg.bmd.service.IDoctorService;
 import com.cg.bmd.service.IPatientService;
 
@@ -39,6 +41,9 @@ public class DoctorController {
 	
 	@Autowired
 	private IPatientService patientService;
+	
+	@Autowired
+	private IAvailabilityDatesService aDService;
 
 	@PostMapping("/saveDoctor")
 	@ApiOperation(" Adding a Doctor Record")
@@ -65,11 +70,11 @@ public class DoctorController {
 		
 	}*/
 
-	@GetMapping("/doctorPatient/getDPJoin")
-	 public List<PatientResponse> getDPJoin(){
-		return doctorService.getDPJoin();
-		 
-	 }
+//	@GetMapping("/doctorPatient/getDPJoin")
+//	 public List<PatientResponse> getDPJoin(){
+//		return doctorService.getDPJoin();
+//		 
+//	 }
 	
 
 //	@GetMapping("/findPatientListByName/{doctorName}")
@@ -102,12 +107,12 @@ public class DoctorController {
 	}
 
 
-	@GetMapping("/getByDoctorName/{doctorName}")
-	
-	public Doctor getByDoctorName(@PathVariable String doctorName) {
-		logger.info("List of Patient is fetched by DoctorName");
-		return doctorService.getByDoctorName(doctorName);
-	}
+//	@GetMapping("/getByDoctorName/{doctorName}")
+//	
+//	public Doctor getByDoctorName(@PathVariable String doctorName) {
+//		logger.info("List of Patient is fetched by DoctorName");
+//		return doctorService.getByDoctorName(doctorName);
+//	}
 
 	@GetMapping("/findAppointmentByDoctor/{doctorId}")
 	
@@ -116,6 +121,17 @@ public class DoctorController {
 		logger.info("Patients fetched by Doctor Id!!!");
 		return doctorService.getAppointmentByDoctor(doctorId);
 	}
+	
+	@PostMapping("/addAvailabilityDates")
+	
+	public ResponseEntity<AvailabilityDates> saveAvailabilityDates(@Valid @RequestBody AvailabilityDates date) {
+		logger.info("Adding a Date : " + date);
+		AvailabilityDates d = aDService.addAvailability(date);
+		return new ResponseEntity<>(d, HttpStatus.CREATED);
+	}
+
+
+	
 
 //	@GetMapping("/findPatientListByDoctor/{doctorId}")
 //	public List<Patient> getPatientByDoctor(@PathVariable int doctorId) {

@@ -26,8 +26,6 @@ public class DoctorServiceImpl implements IDoctorService{
 	@Autowired 
 	private DoctorRepository docRepository; // dependency injection
 	
-	@Autowired
-    private AvailabilityRepository aRepository;
 	
 
 	@Override
@@ -78,32 +76,13 @@ public class DoctorServiceImpl implements IDoctorService{
 	
 
 	
-	@Override
 
-	public AvailabilityDates addAvailability(AvailabilityDates bean) {
-		
-		logger.info("Successfully Added the Availability of Dates by doctor!!!");
-	return aRepository.save(bean);
-
-	}
-
-	
-
-	@Override
-
-	public AvailabilityDates updateAvailability(AvailabilityDates bean) {
-		
-		logger.info("Successfully Updated dates by Doctor !!!");
-	return aRepository.save(bean);
-
-	}
-
-		@Override
-		public List<PatientResponse> getDPJoin() {
-			
-			logger.info("List of Doctor-Patients !!!!");
-			return docRepository.getDPJoin();
-		}
+//		@Override
+//		public List<PatientResponse> getDPJoin() {
+//			
+//			logger.info("List of Doctor-Patients !!!!");
+//			return docRepository.getDPJoin();
+//		}
 
 		
 		
@@ -136,11 +115,11 @@ public class DoctorServiceImpl implements IDoctorService{
 		}
 
 
-		@Override
-		public Doctor getByDoctorName(String doctorName) {
-			logger.info("List of Patient is fetched by DoctorName");
-			return docRepository.findByDoctorName(doctorName);
-		}
+//		@Override
+//		public Doctor getByDoctorName(String doctorName) {
+//			logger.info("List of Patient is fetched by DoctorName");
+//			return docRepository.findByDoctorName(doctorName);
+//		}
 
 		@Override
 		public Doctor getAppointmentByDoctor(int doctorId) {
@@ -149,5 +128,10 @@ public class DoctorServiceImpl implements IDoctorService{
 			return docRepository.findByDoctorId(doctorId);
 		}
 
+		public Doctor getFeedbackByDoctor(int doctorId) {
+			
+			logger.info("List of Feedback given by patient !!!");
+			return docRepository.findByDoctorId(doctorId);
+		}
 	
 }

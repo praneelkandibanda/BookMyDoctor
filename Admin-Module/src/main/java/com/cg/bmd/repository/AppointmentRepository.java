@@ -1,5 +1,6 @@
 package com.cg.bmd.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,8 +13,11 @@ import com.cg.bmd.entities.Doctor;
 
 @Repository
 public interface AppointmentRepository extends JpaRepository<Appointment , Integer>{
+
+//	Appointment findAppointmentsByDate(LocalDate appointmentDate);
+
 	
-//	@Query("SELECT new com.cg.bmd.dto.AppointmentResponse(d.doctorName , a.appointmentStatus)FROM Appointment a JOIN a.doctors d")
+//	@Query("SELECT new com.cg.bmd.dto.AppointmentDateResponse(a.appointmentDate ,d.doctorName )FROM Appointment a JOIN a.doctors d")	
 //	public List<AppointmentResponse> findDAJoin();
 	
 //	public List<Appointment> findAppointmentListByDoctor(Doctor doctor);

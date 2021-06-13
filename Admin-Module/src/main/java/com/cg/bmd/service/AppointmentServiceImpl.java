@@ -1,5 +1,6 @@
 package com.cg.bmd.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -64,12 +65,20 @@ public class AppointmentServiceImpl implements IAppointmentService {
 	}
 
 
+	@Override
+	public Appointment getAppointment(LocalDate appointmentDate) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 //	@Override
-//	public List<AppointmentResponse> getDoctorAppointmentJoin() {
-//		
-//		logger.info("Successfully added Doctor-Application");
-//		return appointmentRepository.findDAJoin();
+//	public Appointment getAppointment(LocalDate appointmentDate) {
+//		// TODO Auto-generated method stub
+//		return appointmentRepository.findByDate(appointmentDate);
 //	}
+
+
 
 
 //	@Override

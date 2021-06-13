@@ -11,6 +11,7 @@ import com.cg.bmd.dto.DoctorResponse;
 import com.cg.bmd.dto.FeedbackResponse;
 import com.cg.bmd.dto.PatientResponse;
 import com.cg.bmd.entities.Doctor;
+import com.cg.bmd.entities.Feedback;
 import com.cg.bmd.entities.Patient;
 
 @Repository
@@ -22,12 +23,11 @@ public interface DoctorRepository extends JpaRepository<Doctor , Integer> {
 	public Doctor findByDoctorId(int doctorId);
 
 	
-	//public List<Patient> findByDoctorId(int doctorId);
 
 
-	@Query("SELECT new com.cg.bmd.dto.PatientResponse(d.doctorName ,  p.patientName) FROM Doctor d JOIN d.patients p")
-	 
-	 public List<PatientResponse> getDPJoin();
+//	@Query("SELECT new com.cg.bmd.dto.PatientResponse(d.doctorName ,  p.patientName) FROM Doctor d JOIN d.patients p")
+//	 
+//	 public List<PatientResponse> getDPJoin();
 
 	 public List<Doctor> findBySpeciality(String speciality);
 	 
@@ -43,5 +43,7 @@ public interface DoctorRepository extends JpaRepository<Doctor , Integer> {
 
 //	   @Query("SELECT new com.cg.bmd.dto.FeedbackResponse(d.doctorName , f.feedbackComments)FROM Doctor d JOIN d.feedbacks f")
 //	   public List<FeedbackResponse> getDFJoin();
+	   
+//	   public List<Feedback> findByDoctor(int doctorId);
 
 }

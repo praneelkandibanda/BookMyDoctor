@@ -29,15 +29,15 @@ public class Patient {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int patientId;
+	@Column(name =" patientId")
+
+	private int id;
 	
 	@Column(name =" patientName")
 	private String patientName;
 	
 	@Column(name = "mobileNo")
-	@NotNull
-	@Pattern(regexp ="[0-9]{10}", message = " Please enter a valid mobile number!!")
-	private String mobileNo;
+	private long mobileNo;
 	
 	@Column(name ="email")
 	@Email

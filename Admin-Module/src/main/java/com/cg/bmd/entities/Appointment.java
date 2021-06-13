@@ -1,5 +1,6 @@
 package com.cg.bmd.entities;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -30,14 +31,7 @@ public class Appointment {
 	@JoinColumn(name = "patient_fk")
 	private Patient patient;
 	
-//	@ManyToOne(cascade = CascadeType.MERGE , targetEntity = Doctor.class)
-//	@JoinColumn(name = "appoint_fk" , referencedColumnName = "doctorId")
-//	private Doctor doctor;
-
-//	private List<Doctor> doctors; // entity
-
-
-
+	private LocalDate appointmentDate = LocalDate.now();
 	
 	private String remark;
 	

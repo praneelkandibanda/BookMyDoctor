@@ -29,33 +29,29 @@ public class Doctor {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	public int doctorId;
+	private int doctorId;
 	
 	@Column(name = "doctorName")
 	@NotNull
 	@Size(min = 4 , message = "Please enter atleast 4 characters in your name ")
-	public String doctorName;
+	private String doctorName;
 	
 	@Column(name = "speciality")
 	@NotNull
-	public String speciality;
+	private String speciality;
 	
-	public String location;
-	public String hospitalName;
+	private String location;
+	private String hospitalName;
 	
 	@Column(name = "mobileNo")
-	//@NotNull
-	//@Size(min = 10,message = " please enter 10 digits of your moblie number")
-	//@Pattern(regexp = "[0-9]{10}")
-	public long mobileNo;
+	private long mobileNo;
 	
 	@Column(name ="email")
 	@Email
-	public String email;
+	private String email;
 	
 	@Column(name = "password")
 	@NotNull
-	//@Size()
 	@Pattern(regexp = "^[a-zA-Z0-9!@#$]{8}", message = "Please use atleast 1 Capital,Small letters and Special characters !!!")
 	private String password;
 	
@@ -63,9 +59,9 @@ public class Doctor {
 	private double chargedPerVisit;
 	
 	
-	@OneToMany(targetEntity = Patient.class , cascade = CascadeType.MERGE)
-	@JoinColumn(name = "dp_fk" , referencedColumnName = "doctorId")
-	public List<Patient> patients;
+//	@OneToMany(targetEntity = Patient.class , cascade = CascadeType.MERGE)
+//	@JoinColumn(name = "dp_fk" , referencedColumnName = "doctorId")
+//	public List<Patient> patients;
 	
 	
 	
@@ -73,11 +69,8 @@ public class Doctor {
 	  @JoinColumn(name = "da_fk" , referencedColumnName = "doctorId") 
 	  List<Appointment> appointments;
 	  
-//	  @OneToMany(targetEntity = Feedback.class , cascade = CascadeType.MERGE)
-//	  @JoinColumn(name = "df_fk" , referencedColumnName = "doctorId")
-//	  public List<Feedback> feedbacks;
+	  @OneToMany(targetEntity = Feedback.class , cascade = CascadeType.MERGE)
+	  @JoinColumn(name = "df_fk" , referencedColumnName = "doctorId")
+	  public List<Feedback> feedbacks;
 	
-	
-
-
 }

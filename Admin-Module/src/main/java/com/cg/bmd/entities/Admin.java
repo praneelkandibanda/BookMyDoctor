@@ -27,7 +27,9 @@ public class Admin {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int adminId;
+	@Column(name =" adminId")
+
+	private int id;
 	@Column(name = "adminName")
 	@NotNull
 	@Size(min = 2, message =" Please enter minimum of 2 characters !!")
@@ -48,11 +50,16 @@ public class Admin {
 	
 	@Pattern(regexp = "[a-zA-Z0-9!@#$]{8}" , message = "Please use atleast 1 caps small letters and special characters !! " )
 	private String password;
-/*
-	@OneToMany( mappedBy = "admin",
-			cascade = CascadeType.MERGE)
-		private List<Patient> patients; 
-	
+
+    @OneToMany(targetEntity = Patient.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "ap_fk", referencedColumnName = "adminId")
+    private List<Patient> patients;
+    
+    @OneToMany(targetEntity = Doctor.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "ad_fk", referencedColumnName = "adminId")
+    private List<Doctor> doctors;
+
+	/*
 	@OneToMany(mappedBy = "admin"
 			,cascade =CascadeType.ALL)
 	private List<Doctor> doctors;

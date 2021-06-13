@@ -1,5 +1,6 @@
 package com.cg.bmd.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.cg.bmd.dto.AppointmentResponse;
@@ -18,6 +19,9 @@ public interface IAppointmentService {
 	void deleteAppointment(int appointmentid) throws AppointmentNotFoundException;
 
 	Appointment updateAppointment(Appointment app);
+	
+
+	Appointment getAppointment(LocalDate appointmentDate);
 	
 //	public List<AppointmentResponse> getDoctorAppointmentJoin();
 	
