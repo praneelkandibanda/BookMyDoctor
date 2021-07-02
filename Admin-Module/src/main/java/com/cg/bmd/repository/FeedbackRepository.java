@@ -11,10 +11,5 @@ import com.cg.bmd.entities.Feedback;
 @Repository
 public interface FeedbackRepository extends JpaRepository<Feedback , Integer>{
 
-	//List<Feedback> findDoctorFeedbackByDoctor(Doctor doctor);
-	
-	//public Feedback getDoctorFeedbackById(Doctor doctor);
-	
-//	@Query("SELECT new com.cg.bmd.entities.FeedbackResponse(d.doctorName , f.rating , f.feedbackComments ")  From Doctor d  Join d.feedbacks f; 
 
 }

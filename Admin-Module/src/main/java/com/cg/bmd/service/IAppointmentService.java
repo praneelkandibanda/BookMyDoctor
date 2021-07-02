@@ -1,6 +1,7 @@
 package com.cg.bmd.service;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import com.cg.bmd.dto.AppointmentResponse;
@@ -21,7 +22,7 @@ public interface IAppointmentService {
 	Appointment updateAppointment(Appointment app);
 	
 
-	Appointment getAppointment(LocalDate appointmentDate);
+	List<Appointment> getAppointment(Date appointmentDate);
 	
 //	public List<AppointmentResponse> getDoctorAppointmentJoin();
 	

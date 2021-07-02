@@ -14,18 +14,21 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-@EnableSwagger2
-@Configuration
+@EnableSwagger2 // To enable the framework for your springbootapplication
+
+@Configuration  // This annotation indicates that a class declares one or more @Bean methods
+                //& may be processed by the Spring container to generate bean definitions and
+               // service requests for those beans at runtime.
 public class SwaggerConfig {
 
-	@Bean
+	@Bean //
 	public Docket postsApi() {
         return new Docket(DocumentationType.SWAGGER_2).groupName("Admin-api").apiInfo(apiInfo()).select()
                 .paths(postPaths()).build();
 	}
 	
 	private Predicate<String> postPaths(){
-		return or(regex("/admin/.*"), regex("/doctors/.*"), regex("/patients/.*"), regex("/treatmentDetails/.*") , regex("/feedback/.*") ,regex("/appointment/.*"));
+		return or(regex("/admin/.*"), regex("/doctors/.*"), regex("/patients/.*") , regex("/feedback/.*") ,regex("/appointment/.*") ,regex("/user/.*"));
 	}
 	
     

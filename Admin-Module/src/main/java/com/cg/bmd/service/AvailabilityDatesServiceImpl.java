@@ -1,6 +1,7 @@
 package com.cg.bmd.service;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -32,9 +33,9 @@ public class AvailabilityDatesServiceImpl implements IAvailabilityDatesService {
 
 	public AvailabilityDates addAvailability(AvailabilityDates bean) {
 		
-		 bean.setFromDate(LocalDate.now());
+		// bean.setFromDate(LocalDate.now());
 		 
-		 bean.setEndDate(LocalDate.now().plusDays(3));
+		// bean.setEndDate(LocalDate.now().plusDays(3));
 		 
 		logger.info("inside AccountserviceImpl add account method"+bean);
 		
@@ -42,15 +43,14 @@ public class AvailabilityDatesServiceImpl implements IAvailabilityDatesService {
 
 	}
 
-	
-
+	@Transactional 
 	@Override
 
 	public AvailabilityDates updateAvailability(AvailabilityDates bean) {
 		
-		 bean.setFromDate(LocalDate.now());
+		// bean.setFromDate(LocalDate.now());
 		 
-		 bean.setEndDate(LocalDate.now().plusDays(3));
+		// bean.setEndDate(LocalDate.now().plusDays(3));
 
 		
 		logger.info("Successfully Updated dates by Doctor !!!");
@@ -60,30 +60,10 @@ public class AvailabilityDatesServiceImpl implements IAvailabilityDatesService {
 
 
 
-	
-	
-//	@Override
-//	@Transactional
-//	public Account addAccount(Account account) {
-//		logger.info("inside AccountserviceImpl add account method"+account);
-//
-//		account.setRegisteredDate(LocalDate.now());
-//		logger.info("inside AccountserviceImpl add account method"+account);
-//
-//		return repository.save(account);
-//	}
-//	
-//	@Override
-//	
-//	public Page<Appointment> getAppointmentsSortedByDate(int doctorId) {
-//		Optional<AvailabilityDates> eng = aRepository.findById(doctorId);
-//		if (eng.isPresent()) {
-//			Pageable pageable = PageRequest.of(0, 10, Direction.ASC, "complaintDate");
-//			return aRepository.findAll(pageable);
-//			 
-//	
-//	}
-//		throws Exception();
-	//}
+	@Override
+	public List<AvailabilityDates> fetchAllDates() {
+		// TODO Auto-generated method stub
+		return aRepository.findAll();
+	}
 
 }

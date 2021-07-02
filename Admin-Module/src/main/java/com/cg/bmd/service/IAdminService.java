@@ -7,6 +7,10 @@ import org.springframework.stereotype.Service;
 import com.cg.bmd.dto.DoctorResponse;
 import com.cg.bmd.dto.PatientResponse;
 import com.cg.bmd.entities.Admin;
+import com.cg.bmd.entities.Appointment;
+import com.cg.bmd.entities.Doctor;
+import com.cg.bmd.entities.Feedback;
+import com.cg.bmd.entities.Patient;
 import com.cg.bmd.exception.AdminNotFoundException;
 
 @Service
@@ -22,8 +26,19 @@ public interface IAdminService {
 	
 	public Admin viewAdmin(int adminId) throws AdminNotFoundException;
 
-	// public List<PatientResponse> getJoinInfo();
+	 public List<PatientResponse> getJoinAPInfo();
 
-	//public List<DoctorResponse> getADJoinInfo();
+	public List<DoctorResponse> getJoinADInfo();
+	
+
+	List<Doctor> getDoctorList();
+	
+	public List<Patient> listOfPatients();
+	
+	public List<Appointment> listOfApp();
+
+	public List<Feedback> listOfFeedbacks();
+
+
 
 }

@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cg.bmd.dto.DoctorResponse;
 import com.cg.bmd.dto.PatientResponse;
 import com.cg.bmd.entities.Admin;
+import com.cg.bmd.entities.Appointment;
 import com.cg.bmd.entities.Doctor;
+import com.cg.bmd.entities.Feedback;
 import com.cg.bmd.entities.Patient;
 import com.cg.bmd.exception.AdminNotFoundException;
 import com.cg.bmd.exception.DoctorNotFoundException;
@@ -33,23 +35,24 @@ import com.cg.bmd.service.IPatientService;
 
 import io.swagger.annotations.ApiOperation;
 
-@RestController
+@RestController  //
 @RequestMapping("/admin")
 public class AdminController {
 	
-	Logger logger = LoggerFactory.getLogger(AdminController.class);
-	
+	Logger logger = LoggerFactory.getLogger(AdminController.class); 
+	//Spring Boot offers considerable support for configuring the logger to meet our logging requirements.
+
 	
 	@Autowired
 	private IAdminService service;
 	
-	@Autowired
-	private IDoctorService doctorService;
+//	@Autowired
+//	private IDoctorService doctorService;
 	
-	@Autowired
-	private IPatientService patientService;
+//	@Autowired
+//	private IPatientService patientService;
 	
-	@GetMapping("/{name}")
+	@GetMapping("/{name}") // 
 	@ApiOperation("Greetings API")
 	public String greetings(@PathVariable String name) {
 		return "<h1>Welcome to Spring Boot" + name + "</h1>";
@@ -98,7 +101,40 @@ public class AdminController {
 		return service.fetchAllAdmin();
 	}
 
+	@GetMapping("/fetchAllPatients")
+	@ApiOperation("Retriving Patients list")
+	public List<Patient> fetch(){
+		return service.listOfPatients();
+		
+	}
 	
+	@GetMapping("/fetchAllDoctors")
+	@ApiOperation("Retriving Patients list")
+	public List<Doctor> fetchDoctors(){
+		return service.getDoctorList();
+		
+	}
+	
+	@GetMapping("/fetchAllAppointments")
+	@ApiOperation("Retriving Patients list")
+	public List<Appointment> fetchAppointment(){
+		return service.listOfApp();
+		
+	}
+
+	@GetMapping("/fetchAllFeedbacks")
+	@ApiOperation("Retriving Patients list")
+	public List<Feedback> fetchFeedbacks(){
+		return service.listOfFeedbacks();
+		
+	}
+
+	
+	
+
+	
+
+	/*
 	@DeleteMapping("/deleteDoctor/{id}")
 	@ApiOperation("Delete an Existing Doctor Record")
 	public ResponseEntity<Void> deletedoc(@PathVariable int id)throws DoctorNotFoundException  {
@@ -122,9 +158,10 @@ public class AdminController {
 		return doctorService.getDoctor(id);
 		
 	}
+	*/
 
 
-	
+
 	
 	//Patient
   /**
@@ -146,14 +183,9 @@ public class AdminController {
 		
 	}
 	**/
-	@GetMapping("/fetchAllPatients")
-	@ApiOperation("Retriving Patients list")
-	public List<Patient> fetch(){
-		return patientService.getAllPatient();
-		
-	}
 	
-
+	
+     /*
 	@DeleteMapping("/deletePatient/{id}")
 	@ApiOperation("Delete an Existing Patient Record")
 	public ResponseEntity<Void> deletePatient(@PathVariable int id)throws PatientNotFoundException  {
@@ -170,18 +202,20 @@ public class AdminController {
 		return patientService.fetchPatientById(id);
 		
 	}
-	/*
+	*/
+	
 	@GetMapping("/AdminPatient/getJoinInfo")
 	public List<PatientResponse> getJoinInfo(){
-		return service.getJoinInfo();
+		return service.getJoinAPInfo();
 		
 	}
 	
 	@GetMapping("/AdminDoctor/getInfo")
 	 public List<DoctorResponse> getADJoinInfo(){
-		return service.getADJoinInfo();
+		return service.getJoinADInfo();
 		
 	}
-*/
+
+	
 
 }

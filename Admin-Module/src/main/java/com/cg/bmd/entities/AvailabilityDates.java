@@ -2,8 +2,10 @@ package com.cg.bmd.entities;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,16 +31,25 @@ public class AvailabilityDates {
 	@Id
 	 @GeneratedValue(strategy = GenerationType.AUTO)
 	 private int availibilityId;
-	 @OneToOne(cascade=CascadeType.ALL)
+	 @OneToOne(cascade=CascadeType.MERGE)
 	 @JoinColumn(name = "avail_dates" , referencedColumnName = "doctorId")
 	 private Doctor doctor;
+	 //private List<Doctor> doctors;
+	// @JsonFormat(shape = JsonFormat.Shape.STRING , pattern = "yyyy-mm-dd")
+	 //private LocalDate fromDate = LocalDate.now();
 	 
-	// @JsonFormat(shape = JsonFormat.Shape.STRING , pattern = "yyyy-mm-dd")
-	 private LocalDate fromDate = LocalDate.now();
+	 @Column(name = "fromDate")
+	 private Date fromDate;
+	 
+	 @Column(name = "endDate")
+	 private Date endDate;
+	 
+	 
+	 
 
 	// @JsonFormat(shape = JsonFormat.Shape.STRING , pattern = "yyyy-mm-dd")
 
-	 private LocalDate endDate = LocalDate.now();
+	 //private LocalDate endDate = LocalDate.now();
 
 	 
 

@@ -6,9 +6,12 @@ import org.springframework.stereotype.Service;
 
 import com.cg.bmd.dto.AppointmentResponse;
 import com.cg.bmd.dto.DoctorResponse;
+import com.cg.bmd.dto.FeedbackResponse;
 import com.cg.bmd.dto.PatientResponse;
+import com.cg.bmd.entities.Appointment;
 import com.cg.bmd.entities.AvailabilityDates;
 import com.cg.bmd.entities.Doctor;
+import com.cg.bmd.entities.Feedback;
 import com.cg.bmd.entities.Patient;
 import com.cg.bmd.exception.DoctorNotFoundException;
 
@@ -25,15 +28,15 @@ public interface IDoctorService {
 	
 	public List<Doctor> getDoctorList();
 
-	public Doctor getPatientsByDoctor(int doctorId);
 
 	public List<Doctor> getBySpeciality(String speciality);
 	 	 
-	public List<AppointmentResponse> getDAJoin(); // ->Appointment
-	 
-	public Doctor getAppointmentByDoctor(int doctorId);
+    public List<AppointmentResponse> findAppointmentDetails(int doctorId);
+    
+    public List<FeedbackResponse> findFeedbackDetails(int doctorId);
 
-    public Doctor getFeedbackByDoctor(int doctorId);
+	//List<Patient> listOfPatients(int doctorId);
+
 
 
 }

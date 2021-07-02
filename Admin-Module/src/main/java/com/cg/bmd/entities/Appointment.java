@@ -1,6 +1,7 @@
 package com.cg.bmd.entities;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -30,9 +31,10 @@ public class Appointment {
 	@OneToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "patient_fk")
 	private Patient patient;
+//	private List<Patient> patients;
+	//private LocalDate appointmentDate = LocalDate.now();
 	
-	private LocalDate appointmentDate = LocalDate.now();
-	
+	private Date appointmentDate;
 	private String remark;
 	
 	private String appointmentStatus;

@@ -10,13 +10,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.bmd.dto.AppointmentResponse;
+import com.cg.bmd.dto.FeedbackResponse;
 import com.cg.bmd.dto.PatientResponse;
+import com.cg.bmd.entities.Appointment;
 import com.cg.bmd.entities.AvailabilityDates;
 import com.cg.bmd.entities.Doctor;
+import com.cg.bmd.entities.Feedback;
 import com.cg.bmd.entities.Patient;
 import com.cg.bmd.exception.DoctorNotFoundException;
+import com.cg.bmd.repository.AppointmentRepository;
 import com.cg.bmd.repository.AvailabilityRepository;
 import com.cg.bmd.repository.DoctorRepository;
+import com.cg.bmd.repository.FeedbackRepository;
+import com.cg.bmd.repository.PatientRepository;
 
 @Service
 public class DoctorServiceImpl implements IDoctorService{
@@ -26,7 +32,16 @@ public class DoctorServiceImpl implements IDoctorService{
 	@Autowired 
 	private DoctorRepository docRepository; // dependency injection
 	
+	@Autowired
+	private AppointmentRepository appRepository;
 	
+	@Autowired
+	private FeedbackRepository feedRepository;
+	
+	@Autowired
+	private PatientRepository patientRepository;
+
+
 
 	@Override
 	public Doctor addDoctor(Doctor bean) {
@@ -55,7 +70,7 @@ public class DoctorServiceImpl implements IDoctorService{
 	}
 	
 
-	@Override
+
 	public List<Doctor> getDoctorList() {
 		
 		logger.info(" Successfully fetched all Doctor Details from db!!!");
@@ -84,15 +99,6 @@ public class DoctorServiceImpl implements IDoctorService{
 //			return docRepository.getDPJoin();
 //		}
 
-		
-		
-//		@Override
-//		public Doctor getPatientListByDoctor(String doctorName) {
-//			
-//			logger.info("Details are fetched by entering DoctorName !!");
-//			return  docRepository.findByDoctorName(doctorName);
-//		}
-
 
 		@Override
 		public List<Doctor> getBySpeciality(String speciality) {
@@ -101,37 +107,24 @@ public class DoctorServiceImpl implements IDoctorService{
 			return docRepository.findBySpeciality(speciality);
 		}
 
-		@Override
-		public Doctor getPatientsByDoctor(int doctorId) {
-			// TODO Auto-generated method stub
-			logger.info("Patients fetched by Doctor Id!!!");
-			return docRepository.findByDoctorId(doctorId);
-		}
-
-		@Override
-		public List<AppointmentResponse> getDAJoin() {
-			logger.info("Displays List of Doctor-Appointments");
-			return docRepository.getDAJoin();
-		}
-
-
+		
 //		@Override
-//		public Doctor getByDoctorName(String doctorName) {
-//			logger.info("List of Patient is fetched by DoctorName");
-//			return docRepository.findByDoctorName(doctorName);
+//		public List<Patient> listOfPatients(int doctorId) {
+//			// TODO Auto-generated method stub
+//			logger.info("Patients fetched by Doctor Id!!!");
+//			return patientRepository.findAll();
 //		}
 
 		@Override
-		public Doctor getAppointmentByDoctor(int doctorId) {
-			
-			logger.info("List of Appointment ");
-			return docRepository.findByDoctorId(doctorId);
+		   public List<AppointmentResponse> findAppointmentDetails(int doctorId){
+			logger.info("Displays List of Doctor-Appointments");
+			return docRepository.getAppointmentDetails(doctorId);
 		}
 
-		public Doctor getFeedbackByDoctor(int doctorId) {
-			
-			logger.info("List of Feedback given by patient !!!");
-			return docRepository.findByDoctorId(doctorId);
+		@Override
+		public List<FeedbackResponse> findFeedbackDetails(int doctorId) {
+			// TODO Auto-generated method stub
+			return docRepository.getFeedbackDetails(doctorId);
 		}
-	
+		
 }

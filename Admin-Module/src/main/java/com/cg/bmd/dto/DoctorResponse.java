@@ -9,9 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class DoctorResponse {
 	
-	//private String doctorName;
-	private int doctorId;
+	private String adminName;
 	private String doctorName;
-	private String patientName;
-	private String speciality;
 }

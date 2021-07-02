@@ -19,7 +19,6 @@ import com.cg.bmd.exception.AppointmentNotFoundException;
 import com.cg.bmd.exception.DoctorNotFoundException;
 import com.cg.bmd.exception.FeedbackNotFoundException;
 import com.cg.bmd.exception.PatientNotFoundException;
-import com.cg.bmd.exception.TreatmentNotFoundException;
 
 @ControllerAdvice
 
@@ -48,12 +47,6 @@ public class ValidationAndExceptionHandler extends ResponseEntityExceptionHandle
 
 	}
 	
-	@ExceptionHandler(value = TreatmentNotFoundException.class)
-	public ResponseEntity<Object> exception(TreatmentNotFoundException exception) {
-
-		return new ResponseEntity<>("TreatmentDetails Not Found!!", HttpStatus.NOT_FOUND);
-
-	}
 	
 	@ExceptionHandler(value = FeedbackNotFoundException.class)
 	public ResponseEntity<Object> exception(FeedbackNotFoundException exception) {

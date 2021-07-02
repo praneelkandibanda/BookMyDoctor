@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.bmd.entities.Doctor;
 import com.cg.bmd.entities.Feedback;
 import com.cg.bmd.exception.FeedbackNotFoundException;
+import com.cg.bmd.service.IDoctorService;
 import com.cg.bmd.service.IFeedbackService;
 
 import io.swagger.annotations.ApiOperation;
@@ -29,6 +31,10 @@ public class FeedbackController {
 	Logger logger = LoggerFactory.getLogger(FeedbackController.class);
 	@Autowired
 	private IFeedbackService feedbackService;
+	
+	@Autowired
+	private IDoctorService doctorService;
+	
 	
 	@PostMapping("/saveFeedback")
 	public ResponseEntity<Feedback> save(@Valid @RequestBody Feedback fbd)
@@ -58,6 +64,16 @@ public class FeedbackController {
     public List<Feedback> fetch() {
     	return feedbackService.getAllFeedback();
     }
+    
+    
+//	@GetMapping("/findFeedbackByDoctor/{id}")
+//	
+//	public Doctor findFeedbackByDoctor(@PathVariable int id) {
+//		
+//		logger.info("Patients fetched by Doctor Id!!!");
+//		return doctorService.getFeedbackByDoctor(id);
+//	}
+
 	
 
 }

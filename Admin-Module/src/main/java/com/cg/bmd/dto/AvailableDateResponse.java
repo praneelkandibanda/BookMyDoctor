@@ -1,7 +1,6 @@
 package com.cg.bmd.dto;
 
-
-import com.cg.bmd.entities.Doctor;
+import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,8 +9,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+public class AvailableDateResponse {
 
-public class FeedbackRequest {
-
-	private Doctor doctor;
+	private String doctorName;
+	private Date fromDate;
+	private Date endDate;
 }

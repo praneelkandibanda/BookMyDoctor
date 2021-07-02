@@ -1,6 +1,7 @@
 package com.cg.bmd.service;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -66,10 +67,13 @@ public class AppointmentServiceImpl implements IAppointmentService {
 
 
 	@Override
-	public Appointment getAppointment(LocalDate appointmentDate) {
-		// TODO Auto-generated method stub
+	public List<Appointment> getAppointment(Date appointmentDate) {
 		return null;
+		// TODO Auto-generated method stub
+		//return appointmentRepository.findAll(appointmentDate);
 	}
+
+
 
 
 //	@Override

@@ -16,16 +16,20 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
+@Data   
 @NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "admin_table")
+@AllArgsConstructor
 public class Admin {
 
-	@Id
+	@Id 
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name =" adminId")
 
@@ -58,6 +62,7 @@ public class Admin {
     @OneToMany(targetEntity = Doctor.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "ad_fk", referencedColumnName = "adminId")
     private List<Doctor> doctors;
+
 
 	/*
 	@OneToMany(mappedBy = "admin"

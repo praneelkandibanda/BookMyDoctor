@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.bmd.dto.AppointmentResponse;
 import com.cg.bmd.entities.Appointment;
+import com.cg.bmd.entities.Doctor;
 import com.cg.bmd.exception.AppointmentNotFoundException;
 import com.cg.bmd.service.IAppointmentService;
+import com.cg.bmd.service.IDoctorService;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -36,16 +38,16 @@ public class AppointmentController {
 	@Autowired
 	private IAppointmentService appointmentService;// CustomerService is a dependency of CustomerContoller
 
-//	@Autowired
-//	public  IDoctorService doctorservice;
+	@Autowired
+	public  IDoctorService doctorService;
 	
 	
-	@GetMapping("/getAll")
-	@ApiOperation("Fetch all Appointments")
-	public List<Appointment> fetch() {
-		logger.info("Fetching all appointments!!");
-		return appointmentService.fetchAll();
-	}
+//	@GetMapping("/getAll")
+//	@ApiOperation("Fetch all Appointments")
+//	public List<Appointment> fetch() {
+//		logger.info("Fetching all appointments!!");
+//		return appointmentService.fetchAll();
+//	}
 
 	@GetMapping("/getById/{appointmentId}")
 	@ApiOperation("Get Appointment By ID")
@@ -88,13 +90,14 @@ public class AppointmentController {
 //		return appointmentService.getDoctorAppointmentJoin();
 //	}
 //
-//	@GetMapping("/getAppointmentListByDoctor/{doctorId}")
-//	public Appointment getAppointmentListByDoctor(@PathVariable int doctorId) {
+
+//	@GetMapping("/findAppointmentByDoctor/{doctorId}")
+//	
+//	public Doctor findAppointmentByDoctor(@PathVariable int doctorId) {
 //		
-//		logger.info("Fetches Appointment List!!!!");
-//		return appointmentService.getAppointmentListByDoctor(doctorId);
+//		logger.info("Patients fetched by Doctor Id!!!");
+//		return doctorService.getAppointmentByDoctor(doctorId);
 //	}
-//
 
 
 	

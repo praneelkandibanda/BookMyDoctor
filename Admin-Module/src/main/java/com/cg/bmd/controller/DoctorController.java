@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,10 +21,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.bmd.dto.AppointmentResponse;
 import com.cg.bmd.dto.DoctorResponse;
+import com.cg.bmd.dto.FeedbackResponse;
 import com.cg.bmd.dto.PatientResponse;
+import com.cg.bmd.entities.Appointment;
 import com.cg.bmd.entities.AvailabilityDates;
 import com.cg.bmd.entities.Doctor;
+import com.cg.bmd.entities.Feedback;
 import com.cg.bmd.entities.Patient;
+import com.cg.bmd.exception.DoctorNotFoundException;
 import com.cg.bmd.service.IAvailabilityDatesService;
 import com.cg.bmd.service.IDoctorService;
 import com.cg.bmd.service.IPatientService;
@@ -39,8 +44,8 @@ public class DoctorController {
 	@Autowired
 	private IDoctorService doctorService;
 	
-	@Autowired
-	private IPatientService patientService;
+//	@Autowired
+//	private IPatientService patientService;
 	
 	@Autowired
 	private IAvailabilityDatesService aDService;
@@ -62,27 +67,29 @@ public class DoctorController {
 		
 	}
 	
-	/*
-	@GetMapping("/patientsList/getByDoctor/{id}")
+	@DeleteMapping("/deleteDoctor/{id}")
+	@ApiOperation("Delete an Existing Doctor Record")
+	public ResponseEntity<Void> deletedoc(@PathVariable int id)throws DoctorNotFoundException  {
+		logger.info("Deleting a Patient!!");
+	     doctorService.removeDoctor(id);
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+	}
 	
-	public List<Patient> findByDoctor( @PathVariable Doctor id){
-		return doctorService.findPatientListByDoctor(id);
+	@GetMapping("/fetchAllDoctor")
+	@ApiOperation("Retriving Doctors list")
+	public List<Doctor> fetchdoc(){
+		return doctorService.getDoctorList();
 		
-	}*/
-
-//	@GetMapping("/doctorPatient/getDPJoin")
-//	 public List<PatientResponse> getDPJoin(){
-//		return doctorService.getDPJoin();
-//		 
-//	 }
+	}
 	
-
-//	@GetMapping("/findPatientListByName/{doctorName}")
-//	public Doctor findPatientListByDoctor(@PathVariable String doctorName) {
-//		// TODO Auto-generated method stub
-//		return  doctorService.getPatientListByDoctor(doctorName);
-//	}
-
+	@GetMapping("/fetchDoctors/{id}")
+	@ApiOperation("Retriving Doctor list by ID")
+	public Doctor getDoctor(@PathVariable int id) throws NumberFormatException, DoctorNotFoundException{
+		logger.info("Inside getDoctor %s", id);
+ 
+		return doctorService.getDoctor(id);
+		
+	}
 	
 	@GetMapping("/findBySpeciality/{speciality}")
 	public List<Doctor> getBySpeciality(@PathVariable String speciality) {
@@ -91,36 +98,32 @@ public class DoctorController {
 		return doctorService.getBySpeciality(speciality);
 	}
 	
-	@GetMapping("/findPatientByDoctor/{id}")
-	
-	public Doctor findPatientsByDoctor(@PathVariable int id) {
-		
-		logger.info("Patients fetched by Doctor Id!!!");
-		return doctorService.getPatientsByDoctor(id);
-	}
 
-	@GetMapping("/getDAJoin")
+	@GetMapping("/listAppointments/{doctorId}")
 	
-	public List<AppointmentResponse> getDAJoin() {
+	public List<AppointmentResponse> listOfApp(@PathVariable int doctorId) {
 		logger.info("Displays List of Doctor-Appointments");
-		return doctorService.getDAJoin();
+		return doctorService.findAppointmentDetails(doctorId);
+	}
+	
+
+	@GetMapping("/getAllFeedbacks/{doctorId}")
+	@ApiOperation("Fetch all Feedbacks")
+	public List<FeedbackResponse> fetchFeedback(@PathVariable int doctorId) {
+		logger.info("Fetching all Feedbacks!!");
+		return doctorService.findFeedbackDetails(doctorId);
 	}
 
 
-//	@GetMapping("/getByDoctorName/{doctorName}")
-//	
-//	public Doctor getByDoctorName(@PathVariable String doctorName) {
-//		logger.info("List of Patient is fetched by DoctorName");
-//		return doctorService.getByDoctorName(doctorName);
+//	@GetMapping("/getAllPatients/{doctorId}")
+//	@ApiOperation("Fetch all Patients")
+//	public List<Patient> fetchPatient(@PathVariable int doctorId) {
+//		logger.info("Fetching all Patients!!");
+//		return doctorService.listOfPatients(doctorId);
 //	}
 
-	@GetMapping("/findAppointmentByDoctor/{doctorId}")
-	
-	public Doctor findAppointmentByDoctor(@PathVariable int doctorId) {
-		
-		logger.info("Patients fetched by Doctor Id!!!");
-		return doctorService.getAppointmentByDoctor(doctorId);
-	}
+
+
 	
 	@PostMapping("/addAvailabilityDates")
 	
@@ -133,12 +136,6 @@ public class DoctorController {
 
 	
 
-//	@GetMapping("/findPatientListByDoctor/{doctorId}")
-//	public List<Patient> getPatientByDoctor(@PathVariable int doctorId) {
-//		
-//		logger.info("List of Patient is fetched by DoctorId");
-//		return doctorService.getPatientByDoctor(doctorId);
-//	}
 
 	
 }
